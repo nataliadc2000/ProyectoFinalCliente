@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Lista de la compra</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Lista de la compra</h1>
+        <div id="container"></div>
+        <form id="addItemForm">
+            <label for="itemName">Nombre del producto:</label>
+            <input type="text" id="itemName" required>
+            <br>
+            <label for="itemprice">Precio del producto:</label>
+            <input type="text" id="itemprice" required>
+            <br>
+            <label for="itemDescription">Descripcion del producto:</label>
+            <input type="text" id="itemDescription" required>
+            <br>
+            <label for="itemImagen">Url de la imagen del producto:</label>
+            <input type="text" id="itemImagen" required>
+            <br>
+            <label for="itemCategory">Categoria del producto:</label>
+            <input type="text" id="itemCategory" required>
+            <button type="submit">Agregar</button>
+        </form>
+        <div id="shoppingList"></div>
+    </div>
+    <script src="scriptProducts.js"></script>
+</body>
+
+</html>
