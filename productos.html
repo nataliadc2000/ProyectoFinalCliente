@@ -7,27 +7,42 @@
 </head>
 
 <body>
-    <div class="container">
-        <h1>Lista de la compra</h1>
-        <div id="container"></div>
-        <form id="addItemForm">
-            <label for="itemName">Nombre del producto:</label>
-            <input type="text" id="itemName" required>
-            <br>
-            <label for="itemprice">Precio del producto:</label>
-            <input type="text" id="itemprice" required>
-            <br>
-            <label for="itemDescription">Descripcion del producto:</label>
-            <input type="text" id="itemDescription" required>
-            <br>
-            <label for="itemImagen">Url de la imagen del producto:</label>
-            <input type="text" id="itemImagen" required>
-            <br>
-            <label for="itemCategory">Categoria del producto:</label>
-            <input type="text" id="itemCategory" required>
-            <button type="submit">Agregar</button>
-        </form>
-        <div id="shoppingList"></div>
+    <header id="header" class="header">
+        <div class="container">
+            <div class="row">
+                <div class="two columns u-pull-right">
+                    <ul>
+                        <li class="submenu">
+                            <img src="./img/cart.png" width="30" id="img-carrito">
+                            <div id="carrito">
+
+                                <table id="lista-carrito" class="u-full-width">
+                                    <thead>
+                                        <tr>
+                                            <th>Imagen</th>
+                                            <th>Nombre</th>
+                                            <th>Precio</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+
+                                <a href="#" id="vaciar-carrito" class="button u-full-width">Vaciar Carrito</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="row">
+        <div class="four columns wrapper">
+            <div class="card">
+            </div>
+        </div>
     </div>
     <script src="scriptProducts.js"></script>
 </body>
