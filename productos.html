@@ -5,6 +5,22 @@
     <title>Lista de la compra</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
+<style>
+    .columns {
+        width: 100%;
+    }
+
+    .row {
+        display: inline-block;
+        width: 30%;
+        height: 50px;
+    }
+
+    .row img {
+        height: 100px;
+        height: 100px;
+    }
+</style>
 
 <body>
     <header id="header" class="header">
@@ -24,10 +40,11 @@
                                             <th>Precio</th>
                                             <th></th>
                                         </tr>
+                                        <ul id="carrito-lista"></ul>
                                     </thead>
                                     <tbody></tbody>
                                 </table>
-
+                                <p>Total: $<span id="carrito-total">0</span></p>
                                 <a href="#" id="vaciar-carrito" class="button u-full-width">Vaciar Carrito</a>
                             </div>
                         </li>
@@ -39,9 +56,9 @@
 
 
     <div class="row">
-        <div class="four columns wrapper">
-            <div class="card">
-            </div>
+
+        <div class="columns">
+
         </div>
     </div>
     <script src="scriptProducts.js"></script>

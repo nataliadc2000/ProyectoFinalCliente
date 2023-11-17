@@ -9,7 +9,9 @@ class Product {
 }
 
 const listaCarrito = document.querySelectorAll('.lista-carrito');
-const card = document.querySelector('.card');
+const card = document.querySelector('.columns');
+
+
 
 fetch('https://fakestoreapi.com/products')
     .then(res => res.json())
@@ -24,59 +26,60 @@ fetch('https://fakestoreapi.com/products')
           <p class="precio">${producto.price}$<span class="u-pull-right ">${producto.price}$</span></p>
           <button type="button" class="btnAceptar" onclick="agregarCursoAlCarrito">Aceptar</button>
         </div>
-        </div>`;
-            // Agregar la tarjeta al DOM
-            document.body.appendChild(card);
+        </div>`
         });
-    });
-function agregarCursoAlCarrito(e) {
-    e.preventDefault();
-    const curso = e.target.parentElement.parentElement;
-    obtenerDatosCurso(curso);
-}
-function obtenerDatosCurso(curso) {
-    const cursoInfo = {
-        imagen: curso.querySelector('.imagen-curso').src,
-        nombre: curso.querySelector('h4').textContent,
-        precio: curso.querySelector('.precio span').textContent,
-        id: curso.querySelector('.agregar-carrito').getAttribute('data-id')
-    };
-    agregarCursoAlHTML(cursoInfo);
-}
+        function agregarCursoAlCarrito(e) {
+            e.preventDefault();
+            const curso = e.target.parentElement.parentElement;
+            obtenerDatosCurso(curso);
+        }
+        function obtenerDatosCurso(curso) {
+            const cursoInfo = {
+                imagen: curso.querySelector('.imagen-curso').src,
+                nombre: curso.querySelector('h4').textContent,
+                precio: curso.querySelector('.precio span').textContent,
+                id: curso.querySelector('.agregar-carrito').getAttribute('data-id')
+            };
 
-function agregarCursoAlHTML(curso) {
-    const row = document.createElement('tr');
-    console.log(curso);
-    row.innerHTML = `
-          <td>
-            <img src="${curso.imagen}" width="100">
-          </td>
-          <td>${curso.nombre}</td>
-          <td>${curso.precio}</td>
-          <td>
-            <input type="number" min="1" value="1">
-          </td>
-          <td>
-            <a class="borrar-curso" data-id="${curso.id}">X</a>
-          </td>
-        `;
-    listaCarrito.appendChild(row);
-}
-// const vaciarCarritoBtn = document.getElementById('vaciar-carrito');
+            agregarCursoAlHTML(cursoInfo);
+        }
+        const carritoLista = document.getElementById('carrito-lista');
+        // carritoTotal = document.getElementById('carrito-total');
+        function agregarCursoAlHTML(curso) {
 
-// vaciarCarritoBtn.addEventListener('click', vaciarCarrito);
+            var li = document.createElement('li');
+            li.innerText = curso.image + ' ' + curso.nombre + ' ' + curso.precio
 
-// listaCarrito.addEventListener('click', eliminarCurso)
+            // Agregar la tarjeta al DOM
+            carritoLista.appendChild(li);
+            //     row.innerHTML = `
+            //   <td>
+            //     <img src="${curso.imagen}" width="100">
+            //   </td>
+            //   <td>${curso.nombre}</td>
+            //   <td>${curso.precio}</td>
+            //   <td>
+            //     <input type="number" min="1" value="1">
+            //   </td>
+            //   <td>
+            //     <a class="borrar-curso" data-id="${curso.id}">X</a>
+            //   </td>
+            // // `;
+            // carritoLista.appendChild(row);
+        }
 
 
-function vaciarCarrito() {
-    while (listaCarrito.firstChild) {
-        listaCarrito.removeChild(listaCarrito.firstChild);
-    }
-}
 
-function eliminarCurso(e) {
-    if (e.target.classList.contains('borrar-curso')) {
-        e.target.parentElement.parentElement.remove();
-    }
-}
+
+        function vaciarCarrito() {
+            while (listaCarrito.firstChild) {
+                listaCarrito.removeChild(listaCarrito.firstChild);
+            }
+        }
+
+        function eliminarCurso(e) {
+            if (e.target.classList.contains('borrar-curso')) {
+                e.target.parentElement.parentElement.remove();
+            }
+        }
+    })
