@@ -31,6 +31,8 @@ document.addEventListener("DOMContentLoaded", function () {
       .then(response => response.json())
       .then(data => {
         console.log('Registro exitoso:', data);
+        localStorage.setItem('username', data.username);
+        localStorage.setItem('password', data.password);
       })
       .catch(error => {
         console.log('Error al registrar:', error);

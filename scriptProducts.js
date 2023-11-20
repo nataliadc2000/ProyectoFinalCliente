@@ -12,6 +12,7 @@ fetch("https://fakestoreapi.com/products")
         json.forEach(element => {
             console.log(element);
             const newDiv = document.createElement("div");
+            newDiv.id = "miDiv";
             newDiv.innerHTML = `
                 <div class="carts">
                 <div>
@@ -19,10 +20,11 @@ fetch("https://fakestoreapi.com/products")
                      <p><span>${element.price}</span>$</p>
                  </div>
                  <p class="title">${element.title}</p>
-                 <a href="" data-id="${element.id}" class="btn-add-cart">add to cart</a><br>
-                 <a href="" data-id="${element.id}" class="btn-add-cart">Editar cart</a>
+                 <a href="" data-id="${element.id}" class="btn-add-cart">add to cart</a>
+                 <a href="" data-id="${element.id}" class="btn-edit-cart>edit card</a>
             </div>
                 `
+            const infoJSON = JSON.stringify(element);
             localStorage.setItem(`newElement${element.id}`, `${element}${element.id}`)
             products.appendChild(newDiv);
         })
@@ -32,6 +34,12 @@ fetch("https://fakestoreapi.com/products")
 let buyThings = [];
 let totalCard = 0;
 let countProduct = 0;
+
+const card = document.getElementById('miDiv');
+
+// card.addEventListener('click', () => {
+//     window.location.href = './editarProducto.html?info=' + encodeURIComponent(infoJSON);
+// })
 
 //functions
 loadEventListenrs();

@@ -1,13 +1,18 @@
 
-const username = document.getElementById("username").value;
-const password = document.getElementById("password").value;
+const usernammeOk = '';
+const passwordOk = '';
 
-
-document.getElementById("iniciarSessionForm").addEventListener("submit", function (event) {
+const login = document.getElementById("iniciarSessionForm");
+login.addEventListener("submit", function (event) {
     event.preventDefault();
 
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
+
+    if (username === localStorage.getItem('username') || password === localStorage.getItem('password')) {
+        usernammeOk = username;
+        passwordOk = password;
+    }
 
     fetch('https://fakestoreapi.com/auth/login', {
         method: 'POST',
@@ -15,15 +20,15 @@ document.getElementById("iniciarSessionForm").addEventListener("submit", functio
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            username: username,
-            password: password
+
+            username: usernammeOk,
+            password: passwordOk
         })
     })
         .then(res => res.json())
         .then(json => {
 
             if (json.token) {
-                localStorage.setItem('username', json.username);
                 console.log("iniciado session");
                 window.location.href = "./productos.html"
             }
