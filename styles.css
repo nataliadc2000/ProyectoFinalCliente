@@ -20,7 +20,7 @@ header {
 }
 
 .header-section {
-    display: flex;
+    /* display: flex; */
     justify-content: space-between;
     margin: auto;
     align-items: center;
@@ -202,4 +202,20 @@ p.author a {
 .btn-add-cart {
     height: auto;
     width: auto;
+}
+
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f2f2f2;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    width: auto;
+    /* align-items: center; */
 }
