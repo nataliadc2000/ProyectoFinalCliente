@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    // Obtén la información pasada como parámetro en la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const infoJSON = urlParams.get('info');
+    const name = info.name;
+    const image = info.image;
+
+    // Decodifica la información JSON
+    const info = JSON.parse(decodeURIComponent(infoJSON));
+    info.forEach(element => {
+
+    });
+</script>
+
+<body>
+
+</body>
+
+</html>
