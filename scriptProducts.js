@@ -24,11 +24,17 @@ fetch("https://fakestoreapi.com/products")
                  <a href="" data-id="${element.id}" class="btn-edit-cart>edit card</a>
             </div>
                 `
+                newDiv.addEventListener('click', () => {
+                    window.location.href = `./editarProducto.html?id=${element.id}`;
+                })
             const infoJSON = JSON.stringify(element);
             localStorage.setItem(`newElement${element.id}`, `${element}${element.id}`)
             products.appendChild(newDiv);
         })
     })
+
+
+
 
 
 let buyThings = [];

@@ -1,37 +1,21 @@
-
-const usernammeOk = '';
-const passwordOk = '';
-
-const login = document.getElementById("iniciarSessionForm");
-login.addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-
-    if (username === localStorage.getItem('username') || password === localStorage.getItem('password')) {
-        usernammeOk = username;
-        passwordOk = password;
+document.getElementById("btnLogin").addEventListener("click", function(event) {
+    event.preventDefault(); // Evita que el formulario se envíe automáticamente
+    
+    // Captura los valores de los campos del formulario
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    
+    // Obtiene los datos almacenados en el Local Storage
+    var storedData = localStorage.getItem("userData");
+    var storedDataObj = JSON.parse(storedData);
+    // Compara los datos capturados con los datos almacenados en el Local Storage
+    if (username === storedDataObj.username && password === storedDataObj.password) {
+      // Los datos coinciden, se permite el inicio de sesión
+      // Redirecciona a la página de product.html
+      window.location.href = "./productos.html";
+    } else {
+      // Los datos no coinciden, se bloquea el inicio de sesión
+      // Muestra un mensaje de error al usuario
+      alert("El nombre de usuario o la contraseña son incorrectos.");
     }
-
-    fetch('https://fakestoreapi.com/auth/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-
-            username: usernammeOk,
-            password: passwordOk
-        })
-    })
-        .then(res => res.json())
-        .then(json => {
-
-            if (json.token) {
-                console.log("iniciado session");
-                window.location.href = "./productos.html"
-            }
-            // Aquí puedes realizar las acciones correspondientes después de iniciar sesión
-        });
-});
+  });
