@@ -20,13 +20,19 @@ fetch("https://fakestoreapi.com/products")
                      <p><span>${element.price}</span>$</p>
                  </div>
                  <p class="title">${element.title}</p>
-                 <a href="" data-id="${element.id}" class="btn-add-cart">add to cart</a>
-                 <a href="" data-id="${element.id}" class="btn-edit-cart>edit card</a>
+                 <a href="" data-id="${element.id}"class="btn-add-cart">add to cart</a>
+                 <input type="button" value="ver mas" class="cartsBtn" onclick ="mostrarProducts(${element.id})">
             </div>
                 `
-                newDiv.addEventListener('click', () => {
-                    window.location.href = `./editarProducto.html?id=${element.id}`;
-                })
+                // const a = newDiv.querySelector('')
+                // a.addEventListener('click',()=>{
+                //  const element = a.target.parentElement;
+                //  readTheContent(element);
+                // })
+
+                // newDiv.addEventListener('click', () => {
+                //     window.location.href = `./editarProducto.html?id=${element.id}`;
+                // })
             const infoJSON = JSON.stringify(element);
             localStorage.setItem(`newElement${element.id}`, `${element}${element.id}`)
             products.appendChild(newDiv);
@@ -34,7 +40,9 @@ fetch("https://fakestoreapi.com/products")
     })
 
 
-
+function mostrarProducts(elementid){
+    window.location.href=`./editarProducto.html?id=${elementid}`;
+}
 
 
 let buyThings = [];
