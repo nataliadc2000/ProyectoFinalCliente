@@ -30,11 +30,25 @@
                 `;
                 document.body.appendChild(card);
             // console.log(json);
+            const form = document.createElement("form");
+form.innerHTML = `
+<input type="text" name="image" value="${element.image}">
+<input type="text" name="price" value="${element.price}">
+<input type="text" name="title" value="${element.title}">
+<input type="submit" value="Edit">
+`;
+document.body.appendChild(form);
+
         });
     }
+const array = JSON.parse(localStorage.getItem("products"));
+const element = array[id];
 
 </script>
 
+
+  
+  </script>
 <body>
 
 </body>

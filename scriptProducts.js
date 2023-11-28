@@ -4,7 +4,7 @@ let containerBuyCart = document.querySelector('.card-items');
 let priceTotal = document.querySelector('.price-total')
 let amountProduct = document.querySelector('.count-product');
 
-
+const arrayProducts = [];
 const products = document.querySelector('.products');
 fetch("https://fakestoreapi.com/products")
     .then(res => res.json())
@@ -20,10 +20,15 @@ fetch("https://fakestoreapi.com/products")
                      <p><span>${element.price}</span>$</p>
                  </div>
                  <p class="title">${element.title}</p>
+                 <div>
                  <a href="" data-id="${element.id}"class="btn-add-cart">add to cart</a>
                  <input type="button" value="ver mas" class="cartsBtn" onclick ="mostrarProducts(${element.id})">
+                 <input type=type="button" value="eliminar" class="cartsBtn" onclick ="deleteProduct(${element.id})">
+                 </div>
             </div>
                 `
+                arrayProducts.push(element);
+                
                 // const a = newDiv.querySelector('')
                 // a.addEventListener('click',()=>{
                 //  const element = a.target.parentElement;
@@ -34,11 +39,12 @@ fetch("https://fakestoreapi.com/products")
                 //     window.location.href = `./editarProducto.html?id=${element.id}`;
                 // })
             const infoJSON = JSON.stringify(element);
-            localStorage.setItem(`newElement${element.id}`, `${element}${element.id}`)
+            // localStorage.setItem(`newElement${element.id}`, `${element}${element.id}`)
             products.appendChild(newDiv);
         })
-    })
-
+        localStorage.setItem('products', JSON.stringify(arrayProducts));
+    
+})
 
 function mostrarProducts(elementid){
     window.location.href=`./editarProducto.html?id=${elementid}`;
@@ -71,27 +77,12 @@ function addProduct(e) {
     }
 }
 
-function deleteProduct(e) {
-    if (e.target.classList.contains('delete-product')) {
-        const deleteId = e.target.getAttribute('data-id');
-
-        buyThings.forEach(value => {
-            if (value.id == deleteId) {
-                let priceReduce = parseFloat(value.price) * parseFloat(value.amount);
-                totalCard = totalCard - priceReduce;
-                totalCard = totalCard.toFixed(2);
-            }
-        });
-        buyThings = buyThings.filter(product => product.id !== deleteId);
-
-        countProduct--;
-    }
-    //FIX: El contador se quedaba con "1" aunque ubiera 0 productos
-    if (buyThings.length === 0) {
-        priceTotal.innerHTML = 0;
-        amountProduct.innerHTML = 0;
-    }
+function deleteProduct(id) {
+    const array = JSON.parse(localStorage.getItem('products'));
+    array.splice(id,1);
+    localStorage.setItem('products', JSON.stringify(array));
     loadHtml();
+
 }
 
 function readTheContent(product) {
@@ -159,20 +150,16 @@ function agregarproducto() {
     const description = document.querySelector(".description");
     const imagen = document.querySelector(".image");
     const category = document.querySelector(".categoria");
-    fetch('https://fakestoreapi.com/products', {
-        method: "POST",
-        body: JSON.stringify(
-            {
-                title: name.value,
-                price: price.value,
-                description: description.value,
-                image: imagen.value,
-                category: category.value
-            }
-        )
-    })
-        .then(res => res.json())
-        .then(json => {
-            localStorage.setItem('nuevoElemento', json);
-        })
+    
+    const newProduct = {
+        name:name,
+        price:price,
+        description:description,
+        image:imagen,
+        category:category
+    };
+    let productsArray = JSON.parse(localStorage.getItem('products'));
+    productsArray.push(newProduct);
+    localStorage.setItem('products',JSON.stringify(productsArray));
+    loadHtml();
 }
