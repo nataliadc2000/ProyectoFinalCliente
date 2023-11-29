@@ -23,10 +23,16 @@
             // console.log(json);
             const form = document.createElement("form");
 form.innerHTML = `
+<div class="elemento">
+<h1> Editar el producto</h1>
+<label for="image">Url de la imagen</label>
 <input type="text" name="image" id="image" value="${element.image}">
+<label for="image">Url de la imagen</label>
 <input type="text" name="price" id="price" value="${element.price}">
+<label for="title">Titulo</label>
 <input type="text" name="title" id="title" value="${element.title}">
 <input type="button" value="Edit" onclick="modificarDatos()">
+</div>
 `;
 document.body.appendChild(form);
 
