@@ -24,10 +24,16 @@
                 </div>
                 <script>
                     const usuario = localStorage.getItem("userData");
-                    const url= "./editarUsuario.html?usuario"+usuario;
+                    // const url= "./editarUsuario.html?usuario"+usuario;
+                    
+                    function mostrarusuario(){
+                        console.log(usuario);
+                        window.location.href=`./editarusuario.html?usuario=${usuario}`;
+
+                    }
                 </script>
                     <div >
-                        <a href="${url}">
+                        <a onclick="mostrarusuario()">
                         <img style="height: 50px;" src="https://th.bing.com/th/id/OIP.QB5xyhi87qJ0XW48kYlK7gHaIE?rs=1&pid=ImgDetMain" max-height="15">                    </div>
                         </a>    
                     </div>
