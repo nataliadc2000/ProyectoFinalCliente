@@ -4,11 +4,36 @@ let containerBuyCart = document.querySelector('.card-items');
 let priceTotal = document.querySelector('.price-total')
 let amountProduct = document.querySelector('.count-product');
 
+const btnCarrito = document.getElementById('btncomprarahora');
+
+btnCarrito.addEventListener('click', () => {
+    localStorage.setItem('carrito',JSON.stringify(buyThings));
+})
+
 const arrayProducts = [];
 const products = document.querySelector('.products');
+document.getElementById("btnAllProducts").addEventListener("click", function() {
+
 fetch("https://fakestoreapi.com/products")
     .then(res => res.json())
     .then(json => {
+        const selected1=json.slice(0,3);
+        const arrayDeArrays = selected1.map(item => [item.id, item.title, item.price]);
+
+        // Guardar el array de arrays en el Local Storage
+        localStorage.setItem('arrayDeArrays', JSON.stringify(arrayDeArrays));
+        let carrito = JSON.parse(localStorage.getItem('arrayDeArrays'));
+        const selected2=json.slice(0,3);
+        const arrayDeArrays2 = selected2.map(item => [item.id, item.title, item.price]);
+        carrito.push(arrayDeArrays2);
+
+        // Guardar el array de arrays en el Local Storage
+        localStorage.setItem('arrayDeArrays', JSON.stringify(arrayDeArrays));
+        
+        // console.log(arrayDeArrays);
+        
+        // Guardar el array de arrays en el Local Storage
+
         json.forEach(element => {
             console.log(element);
             const newDiv = document.createElement("div");
@@ -23,7 +48,7 @@ fetch("https://fakestoreapi.com/products")
                  <div>
                  <a href="" data-id="${element.id}"class="btn-add-cart">add to cart</a>
                  <input type="button" value="ver mas" class="cartsBtn" onclick ="mostrarProducts(${element.id})">
-                 <input type=type="button" value="eliminar" class="cartsBtn" onclick ="deleteProduct(${element.id})">
+                 <input type="button" value="Eliminar" class="cartsBtn" onclick ="deleteProduct(${element.id})">
                  </div>
             </div>
                 `
@@ -44,12 +69,126 @@ fetch("https://fakestoreapi.com/products")
         })
         localStorage.setItem('products', JSON.stringify(arrayProducts));
     
-})
+})});
+
+document.getElementById("btnElectronic").addEventListener("click", function() {
+    // Acciones a realizar cuando se hace clic en el botón "Electronic"
+    fetch('https://fakestoreapi.com/products/category/electronics').then(response => {
+    return response.json();
+}).then(json => {
+    json.forEach(element => {
+        console.log(element);
+        const newDiv = document.createElement("div");
+        newDiv.id = "miDiv";
+        newDiv.innerHTML="";
+        newDiv.innerHTML = `
+            <div class="carts">
+            <div>
+                <img src="${element.image}" alt="">
+                 <p><span>${element.price}</span>$</p>
+             </div>
+             <p class="title">${element.title}</p>
+             <div>
+             <a href="" data-id="${element.id}"class="btn-add-cart">add to cart</a>
+             <input type="button" value="ver mas" class="cartsBtn" onclick ="mostrarProducts(${element.id})">
+             <input type="button" value="Eliminar" class="cartsBtn" onclick ="deleteProduct(${element.id})">
+             </div>
+        </div>
+            `;
+            products.appendChild(newDiv);
+    })})
+  });
+
+  document.getElementById("btnJewelery").addEventListener("click", function() {
+      // Acciones a realizar cuando se hace clic en el botón "Electronic"
+      fetch('https://fakestoreapi.com/products/category/jewelery').then(response => {
+        return response.json();
+    }).then(json => {
+        json.forEach(element => {
+            console.log(element);
+            const newDiv = document.createElement("div");
+            newDiv.id = "miDiv";
+            newDiv.innerHTML="";
+            newDiv.innerHTML = `
+                <div class="carts">
+                <div>
+                    <img src="${element.image}" alt="">
+                     <p><span>${element.price}</span>$</p>
+                 </div>
+                 <p class="title">${element.title}</p>
+                 <div>
+                 <a href="" data-id="${element.id}"class="btn-add-cart">add to cart</a>
+                 <input type="button" value="ver mas" class="cartsBtn" onclick ="mostrarProducts(${element.id})">
+                 <input type="button" value="Eliminar" class="cartsBtn" onclick ="deleteProduct(${element.id})">
+                 </div>
+            </div>
+                `;
+            products.appendChild(newDiv);
+
+        })})
+      });
+
+  document.getElementById("btnMensClothing").addEventListener("click", function() {
+     const name= "men's clothing" // Acciones a realizar cuando se hace clic en el botón "Electronic"
+      fetch(`https://fakestoreapi.com/products/category/${name}`).then(response => {
+        return response.json();
+    }).then(json => {
+        json.forEach(element => {
+            console.log(element);
+            const newDiv = document.createElement("div");
+            newDiv.id = "miDiv";
+            newDiv.innerHTML="";
+            newDiv.innerHTML = `
+                <div class="carts">
+                <div>
+                    <img src="${element.image}" alt="">
+                     <p><span>${element.price}</span>$</p>
+                 </div>
+                 <p class="title">${element.title}</p>
+                 <div>
+                 <a href="" data-id="${element.id}"class="btn-add-cart">add to cart</a>
+                 <input type="button" value="ver mas" class="cartsBtn" onclick ="mostrarProducts(${element.id})">
+                 <input type="button" value="Eliminar" class="cartsBtn" onclick ="deleteProduct(${element.id})">
+                 </div>
+            </div>
+                `;
+        })})
+      });
+
+  document.getElementById("btnWomensClothing").addEventListener("click", function() {
+      
+    const name= "women's clothing"
+    // Acciones a realizar cuando se hace clic en el botón "Electronic"
+      fetch(`https://fakestoreapi.com/products/category/${name}`).then(response => {
+        return response.json();
+    }).then(json => {
+        json.forEach(element => {
+            console.log(element);
+            const newDiv = document.createElement("div");
+            newDiv.id = "miDiv";
+            newDiv.innerHTML="";
+            newDiv.innerHTML = `
+                <div class="carts">
+                <div>
+                    <img src="${element.image}" alt="">
+                     <p><span>${element.price}</span>$</p>
+                 </div>
+                 <p class="title">${element.title}</p>
+                 <div>
+                 <a href="" data-id="${element.id}"class="btn-add-cart">add to cart</a>
+                 <input type="button" value="ver mas" class="cartsBtn btn-add-cart" onclick ="mostrarProducts(${element.id})">
+                 <input type="button" value="Eliminar" class="cartsBtn btn-add-cart" onclick ="deleteProduct(${element.id})">
+                 </div>
+            </div>
+                `;
+            products.appendChild(newDiv);
+
+        })})
+      });
 
 function mostrarProducts(elementid){
     window.location.href=`./editarProducto.html?id=${elementid}`;
 }
-
 
 let buyThings = [];
 let totalCard = 0;
@@ -72,7 +211,8 @@ function loadEventListenrs() {
 function addProduct(e) {
     e.preventDefault();
     if (e.target.classList.contains('btn-add-cart')) {
-        const selectProduct = e.target.parentElement;
+        const selectProduct = e.target.parentElement.parentElement;
+        console.log(selectProduct);
         readTheContent(selectProduct);
     }
 }
@@ -145,18 +285,24 @@ function clearHtml() {
 
 function agregarproducto() {
 
-    const name = document.querySelector(".name");
-    const price = document.querySelector(".price");
-    const description = document.querySelector(".description");
-    const imagen = document.querySelector(".image");
-    const category = document.querySelector(".categoria");
-    
+    const name = document.querySelector(".name").textContent;
+    const price = document.querySelector(".price").textContent;
+    const description = document.querySelector(".description").textContent;
+    const imagen = document.querySelector(".image").src;
+    const category = document.querySelector(".categoria").textContent;
+    const categoryCorrecta= '' ;
+    if(category === "electronics" || category === "jewelery" || category === "men's clothing" || category === "women's clothing"){
+        categoryCorrecta = category;
+    }else{
+        alert("La categoria que has introducido no esta permitida");
+
+    }
     const newProduct = {
         name:name,
         price:price,
         description:description,
         image:imagen,
-        category:category
+        category:categoryCorrecta
     };
     let productsArray = JSON.parse(localStorage.getItem('products'));
     productsArray.push(newProduct);

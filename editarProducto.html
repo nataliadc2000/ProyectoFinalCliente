@@ -32,10 +32,10 @@
             // console.log(json);
             const form = document.createElement("form");
 form.innerHTML = `
-<input type="text" name="image" value="${element.image}">
-<input type="text" name="price" value="${element.price}">
-<input type="text" name="title" value="${element.title}">
-<input type="submit" value="Edit">
+<input type="text" name="image" id="image" value="${element.image}">
+<input type="text" name="price" id="price" value="${element.price}">
+<input type="text" name="title" id="title" value="${element.title}">
+<input type="button" value="Edit" onclick="modificarDatos()">
 `;
 document.body.appendChild(form);
 
@@ -44,6 +44,22 @@ document.body.appendChild(form);
 const array = JSON.parse(localStorage.getItem("products"));
 const element = array[id];
 
+function modificarDatos(){
+    
+    // Obtener los valores del formulario
+const image = document.getElementById("image").value;
+const price = document.getElementById("price").value;
+const title = document.getElementById("title").value;
+// Obtener los datos del localstorage
+element.image= image;
+element.price = price;
+element.title =title;
+array.push(element);
+
+// Guardar los datos actualizados en el localstorage
+localStorage.setItem("products", JSON.stringify(array));
+
+}
 </script>
 
 

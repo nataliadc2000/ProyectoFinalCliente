@@ -1,7 +1,5 @@
 
 
-const usuario = URLSearchParams(usuario);
-
 function modificarDatos(){
     
     // Obtener los valores del formulario
@@ -35,3 +33,32 @@ userData.phone = phone;
 localStorage.setItem("userData", JSON.stringify(userData));
 
 }
+
+const arrayDeArrays = JSON.parse(localStorage.getItem('arrayDeArrays'));
+
+// const divUltimosCarritos = document.getElementById("ultimosCarritos");
+
+
+// Obtén el div
+const divUltimosCarritos = document.getElementById("ultimosCarritos");
+
+// Recorre cada array y crea elementos para mostrar los datos
+arrayDeArrays.forEach((array, index) => {
+  // Crear un elemento de título
+  const titulo = document.createElement("h2");
+  divUltimosCarritos.appendChild(titulo);
+  
+  // Crear un elemento de lista
+  const lista = document.createElement("ul");
+  
+  // Recorre cada elemento del array y crea elementos de lista
+  array.forEach((elemento) => {
+      const itemLista = document.createElement("li");
+      titulo.textContent = `Carrito ${index + 1}`;
+    itemLista.textContent = elemento;
+    lista.appendChild(itemLista);
+  });
+
+  // Agregar la lista al div
+  divUltimosCarritos.appendChild(lista);
+});
